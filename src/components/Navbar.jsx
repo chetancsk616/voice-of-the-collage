@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import gsap from "gsap";
 
 export default function Navbar() {
+  useEffect(() => {
+    // Handle smooth scrolling with offset for fixed navbar
+    const handleNavClick = (e, targetId) => {
+      e.preventDefault();
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const targetPosition = targetElement.offsetTop - 80; // Account for navbar height
+
+        // Use window.scrollTo with GSAP animation
+        gsap.to(window, {
+          duration: 1.2,
+          scrollTo: { y: targetPosition },
+          ease: "power2.out"
+        });
+      }
+    };
+
+    // Add click handlers to nav links
+    const navLinks = document.querySelectorAll('#main-navbar a[href^="#"]');
+    navLinks.forEach(link => {
+      const targetId = link.getAttribute('href').substring(1);
+      link.addEventListener('click', (e) => handleNavClick(e, targetId));
+    });
+
+    // Cleanup
+    return () => {
+      navLinks.forEach(link => {
+        link.removeEventListener('click', handleNavClick);
+      });
+    };
+  }, []);
+
   return (
     <header>
       <nav id="main-navbar" className="main-navbar" aria-label="Main Navigation">
