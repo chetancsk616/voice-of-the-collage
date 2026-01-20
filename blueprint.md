@@ -1,39 +1,49 @@
-# Project Blueprint
 
-## Overview
+# **Blueprint: Voice of the College**
 
-This is a React application featuring a user authentication system powered by Firebase. It provides distinct dashboard experiences for general users and administrators. The user interface is crafted with a modern glassmorphism design, emphasizing a clean and visually appealing aesthetic with smooth transitions and hover effects.
+## **Overview**
 
-## Project Outline
+This document outlines the architecture, design, and features of the "Voice of the College" application. The application is a web-based platform designed to connect the college community by showcasing innovative student-led projects. It provides a secure login system and a dynamic, single-page landing page to present information to users.
 
-*   **Framework:** React (Vite)
-*   **Styling:** Material-UI with custom CSS for a glassmorphism look and feel.
-*   **Authentication:** Firebase Authentication using Email/Password.
-*   **Routing:** `react-router-dom` for navigation between pages.
-*   **Core Components:**
-    *   `LoginPage`: Secure user login.
-    *   `SignupPage`: User self-registration.
-    *   `UserPage`: A dashboard for authenticated users to explore detailed product information.
-    *   `AdminPage`: A restricted panel for administrative tasks.
-*   **Design Principles:**
-    *   **Theme:** A light, energetic theme with a linear gradient background (`#83a4d4` to `#b6fbff`).
-    *   **UI:** "Glass" cards and inputs characterized by `backdrop-filter`, subtle borders, and shadows to create a sense of depth.
-    *   **Interactivity:** Smooth `transform` transitions on interactive elements like buttons and cards to provide feedback.
-    *   **Layout:** Responsive and mobile-first design using Material-UI's grid system.
+## **Project Outline**
 
-## Current Request: Enhance User Page Content
+### **Styling and Design**
 
-### Goal
+*   **Component Library:** Material-UI (MUI) is used for a consistent and modern design.
+*   **Layout:** The main landing page is a single-page layout with vertical scrolling sections.
+*   **Navigation:** A fixed navigation bar allows for smooth scrolling between sections.
+*   **Visuals:** The design incorporates a blue and white color scheme, with a gradient background in the hero section.
+*   **Typography:** Clear and readable fonts are used, with a hierarchy of headings and body text.
 
-To enrich the `UserPage` with comprehensive, website-ready descriptions and visuals for the "Logic Checker Compiler" and "Fingerprint Charger Box" products.
+### **Features Implemented**
 
-### Plan
+*   **User Authentication:**
+    *   Login and Signup pages with Firebase authentication.
+    *   Secure routing to protect the main content.
+*   **Landing Page Sections:**
+    *   **Hero Section:** A full-screen welcome message with a call-to-action button.
+    *   **Our Products:** A section to showcase the innovative products, each with a description, image carousel, and key highlights.
+    *   **Key Achievements:** A section to display key milestones and successes.
+    *   **About Us & Contact:** Placeholder sections for future content.
+*   **Navigation:**
+    *   A persistent navigation bar at the top of the page.
+    *   Smooth scrolling to different sections of the landing page.
+    *   A logout button for authenticated users.
 
-1.  **Install Carousel Dependency:** Add the `react-material-ui-carousel` package to the project to create an interactive image gallery for each product.
-2.  **Restructure User Page:** Transition from a simple two-column layout to a more detailed, single-column narrative format. Each product will be presented in its own dedicated section to accommodate the richer content.
-3.  **Implement Product Sections:** For each product, a Material-UI `Card` will be used to encapsulate:
-    *   A prominent title and a value-focused subtitle.
-    *   An image carousel combining a primary illustration with the provided product photographs.
-    *   Clearly demarcated sections for "How It Works," "Key Highlights," and "Why It Matters" using `Typography`, `List`, and `ListItem` components for a clean and readable structure.
-4.  **Refine Typography and Style:** Ensure the new content adheres to a professional typographic hierarchy and the established glassmorphism design language.
-5.  **Update Blueprint:** Reflect these enhancements in this `blueprint.md` file upon completion.
+## **Current Request: Landing Page Refactoring**
+
+### **Plan and Steps**
+
+The following steps were taken to refactor the application and create the new landing page:
+
+1.  **Component Creation:** The existing `UserPage.jsx` was broken down into smaller, reusable components:
+    *   `HeroSection.jsx`
+    *   `OurProducts.jsx`
+    *   `KeyAchievements.jsx`
+    *   `AboutUs.jsx`
+    *   `Contact.jsx`
+2.  **Navigation:** A `Navbar.jsx` component was created to provide navigation between the new sections using `react-scroll` for a smooth scrolling effect.
+3.  **Main Page Assembly:** A new `MainPage.jsx` component was created to assemble all the section components in the correct order.
+4.  **Routing Update:** The main `App.jsx` was updated to use the new `MainPage.jsx` for the `/home` route. The `Navbar` is conditionally rendered so it doesn't appear on the login and signup pages.
+5.  **Cleanup:** The old `UserPage.jsx` file was deleted as it is no longer needed.
+6.  **Verification:** The code was linted to ensure it adheres to coding standards, and the `package.json` file was checked to confirm all dependencies are in order.

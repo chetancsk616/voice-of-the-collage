@@ -1,21 +1,25 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import UserPage from './pages/UserPage';
-import AdminPage from './pages/AdminPage';
+import MainPage from './components/MainPage';
+import Navbar from './components/Navbar';
 
-function App() {
+const App = () => {
+  const location = useLocation();
+  const showNavbar = location.pathname !== '/' && location.pathname !== '/signup';
+
   return (
-    <Router>
+    <div>
+      {showNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/home" element={<MainPage />} />
       </Routes>
-    </Router>
+    </div>
   );
-}
+};
 
 export default App;
