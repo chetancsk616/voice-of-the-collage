@@ -15,11 +15,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      if (email === 'admin@test.com') {
-        navigate('/admin');
-      } else {
-        navigate('/user');
-      }
+      navigate('/home');
     } catch (error) {
       setError(error.message);
     }

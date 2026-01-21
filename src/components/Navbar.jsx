@@ -1,13 +1,22 @@
-import React from 'react';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
-import { Link as ScrollLink, scroller } from 'react-scroll'; // Import scroller
-import { getAuth, signOut } from 'firebase/auth';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
+import React, { useState, useEffect } from 'react';
+import { AppBar, Toolbar, Button, Box, Menu, MenuItem, IconButton, Avatar } from '@mui/material';
+import { scroller } from 'react-scroll';
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const location = useLocation(); // Get current route
+  const location = useLocation();
+  const [user, setUser] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, [auth]);
 
   const handleLogout = async () => {
     try {
@@ -18,21 +27,23 @@ const Navbar = () => {
     }
   };
 
-  // Helper function to handle navigation
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleNavClick = (section) => {
     if (location.pathname === '/home') {
-      // If we are already on Home, just scroll smoothly
       scroller.scrollTo(section, {
         smooth: true,
         duration: 500,
-        offset: -64, // Adjust for Navbar height
+        offset: -64,
       });
     } else {
-      // If we are on another page (like /user or /products), go to Home first
       navigate('/home');
-      // Optional: If you want to auto-scroll after navigating, you'd need a more complex setup 
-      // (like passing state), but typically navigating to Home top is sufficient.
-      // If you specifically want to link to the /products PAGE (not the section), see note below.
     }
   };
 
@@ -40,59 +51,43 @@ const Navbar = () => {
     <AppBar position="fixed" sx={{ background: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(10px)' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box>
-          {/* HOME BUTTON */}
-          <Button 
-            color="primary" 
-            sx={{ fontWeight: 600 }} 
-            onClick={() => handleNavClick('hero')}
-          >
+          <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('hero')}>
             Home
           </Button>
-
-          {/* PRODUCTS BUTTON 
-             NOTE: If you want this to go to the separate "ProductsPage" (/products), 
-             replace the onClick with: onClick={() => navigate('/products')} 
-             Currently, this logic tries to scroll to the Products SECTION on Home.
-          */}
-          <Button 
-            color="primary" 
-            sx={{ fontWeight: 600 }} 
-            onClick={() => handleNavClick('products')}
-          >
+          <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('products')}>
             Products
           </Button>
-
-          {/* ACHIEVEMENTS BUTTON */}
-          <Button 
-            color="primary" 
-            sx={{ fontWeight: 600 }} 
-            onClick={() => handleNavClick('achievements')}
-          >
+          <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('achievements')}>
             Achievements
           </Button>
-
-          {/* ABOUT US BUTTON */}
-          <Button 
-            color="primary" 
-            sx={{ fontWeight: 600 }} 
-            onClick={() => handleNavClick('about')}
-          >
+          <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('about')}>
             About Us
           </Button>
-
-          {/* CONTACT BUTTON */}
-          <Button 
-            color="primary" 
-            sx={{ fontWeight: 600 }} 
-            onClick={() => handleNavClick('contact')}
-          >
+          <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('contact')}>
             Contact
           </Button>
         </Box>
-        
-        <Button color="primary" variant="outlined" onClick={handleLogout} sx={{ fontWeight: 600 }}>
-          Logout
-        </Button>
+
+        {user ? (
+          <Box>
+            <IconButton onClick={handleMenuOpen}>
+              <Avatar sx={{ width: 32, height: 32 }} />
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={() => { navigate('/user'); handleMenuClose(); }}>View Profile</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+              <MenuItem onClick={handleLogout}>Sign Out</MenuItem>
+            </Menu>
+          </Box>
+        ) : (
+          <Button color="primary" variant="outlined" onClick={() => navigate('/')} sx={{ fontWeight: 600 }}>
+            Login
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );
