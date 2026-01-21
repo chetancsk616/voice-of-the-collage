@@ -1,100 +1,122 @@
-
 import React from 'react';
-import Slider from 'react-slick';
-import { Card, CardContent, CardMedia, Typography, Grid, Container, Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { CheckCircle } from '@mui/icons-material';
-
-// Import slick-carousel styles
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { Box, Container, Typography, Grid, Paper, List, ListItem, ListItemIcon, ListItemText, Card, CardContent } from '@mui/material';
+import { CheckCircleOutline, Security, DeveloperMode } from '@mui/icons-material';
 
 const products = [
   {
-    title: 'Automated Attendance System',
-    description: 'A system that uses facial recognition to automate student attendance, saving time and reducing manual errors.',
-    images: [
-      'https://via.placeholder.com/600x400?text=Automated+Attendance+1',
-      'https://via.placeholder.com/600x400?text=Automated+Attendance+2',
-      'https://via.placeholder.com/600x400?text=Automated+Attendance+3',
+    icon: <DeveloperMode sx={{ fontSize: 50, color: 'primary.main' }} />,
+    title: 'Logic Checker Compiler',
+    subtitle: 'Smart Verification for Reliable Digital Systems',
+    description: 'The Logic Checker Compiler is a smart verification solution designed to analyze, validate, and debug digital logic operations with high accuracy. Built for engineers, students, and developers, it bridges the gap between theoretical logic design and real-world hardware behavior.',
+    howItWorks: 'The system accepts logic definitions or test inputs, compiles them into executable verification routines, and checks the actual hardware response against expected logic outcomes. Any mismatch is instantly flagged, allowing faster debugging and improved system reliability.',
+    keyHighlights: [
+      'Automated logic compilation and verification',
+      'Detects logical faults, timing issues, and incorrect signal states',
+      'Supports microcontroller and embedded-system testing',
+      'Reduces manual testing time and human error',
+      'Ideal for education, R&D labs, and prototyping environments',
     ],
-    highlights: [
-      '99.5% accuracy in facial recognition.',
-      'Real-time attendance tracking.',
-      'Integration with existing college databases.',
-    ],
+    whyItMatters: 'As digital systems grow more complex, manual logic testing becomes inefficient and error-prone. The Logic Checker Compiler ensures correctness, consistency, and confidence in every digital design—before deployment.'
   },
   {
-    title: 'Campus Navigation App',
-    description: 'A mobile application that provides indoor and outdoor navigation for the college campus, helping students and visitors find their way.',
-    images: [
-      'https://via.placeholder.com/600x400?text=Campus+Navigation+1',
-      'https://via.placeholder.com/600x400?text=Campus+Navigation+2',
-      'https://via.placeholder.com/600x400?text=Campus+Navigation+3',
+    icon: <Security sx={{ fontSize: 50, color: 'primary.main' }} />,
+    title: 'Fingerprint Charger Box',
+    subtitle: 'Secure Power Access Through Biometric Authentication',
+    description: 'The Fingerprint Charger Box is an innovative biometric-enabled charging solution that allows users to securely charge their devices using fingerprint authentication. It combines physical security with intelligent access control to prevent theft, misuse, and unauthorized access.',
+    howItWorks: 'Users register their fingerprint once. When charging is required, the device unlocks only after successful biometric verification. Once authenticated, power is enabled and the compartment remains locked until the same user retrieves the device.',
+    keyHighlights: [
+      'Fingerprint-based user authentication',
+      'Prevents unauthorized access and device theft',
+      'Ideal for public, shared, and institutional environments',
+      'Supports mobile phones, power banks, and small electronics',
+      'Low power consumption with embedded control logic',
     ],
-    highlights: [
-      'Interactive campus maps.',
-      'Turn-by-turn navigation.',
-      'Information on campus events and facilities.',
+    useCases: [
+        'Educational institutions',
+        'Offices and workplaces',
+        'Public charging stations',
+        'Hostels, libraries, and co-working spaces',
     ],
-  },
+    whyItMatters: 'In shared charging environments, security is a major concern. The Fingerprint Charger Box ensures trust, safety, and accountability, making public charging both convenient and secure.'
+  }
 ];
 
 const OurProducts = () => {
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
   return (
-    <Box sx={{ py: 8, backgroundColor: '#f9f9f9' }}>
+    <Box id="products" sx={{ py: 8, backgroundColor: '#fff' }}>
       <Container maxWidth="lg">
-        <Typography variant="h3" component="h2" align="center" gutterBottom sx={{ fontWeight: 700, color: '#333' }}>
+        <Typography variant="h2" component="h2" align="center" gutterBottom sx={{ fontWeight: 700, color: '#333' }}>
           Our Products
         </Typography>
-        <Typography variant="h6" component="p" align="center" sx={{ mb: 6, color: '#666' }}>
-          Discover the innovative projects from our students.
-        </Typography>
-        <Grid container spacing={6}>
+        <Grid container spacing={6} sx={{ mt: 4 }}>
           {products.map((product, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Card sx={{ height: '100%', boxShadow: 3, borderRadius: 2 }}>
-                <Slider {...sliderSettings}>
-                  {product.images.map((image, i) => (
-                    <div key={i}>
-                      <CardMedia
-                        component="img"
-                        height="300"
-                        image={image}
-                        alt={`${product.title} - slide ${i + 1}`}
-                      />
-                    </div>
-                  ))}
-                </Slider>
-                <CardContent>
-                  <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 600 }}>
+            <Grid item xs={12} key={index}>
+              <Card elevation={3} sx={{ borderRadius: 2, display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+                <Box sx={{ p: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'primary.main', color: '#fff' }}>
+                  {product.icon}
+                </Box>
+                <CardContent sx={{ p: 4 }}>
+                  <Typography variant="h4" component="h3" gutterBottom sx={{ fontWeight: 600 }}>
                     {product.title}
+                  </Typography>
+                  <Typography variant="h6" component="p" sx={{ mb: 2, color: '#555' }}>
+                    {product.subtitle}
                   </Typography>
                   <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
                     {product.description}
                   </Typography>
-                  <Typography variant="h6" component="h4" gutterBottom sx={{ fontWeight: 600 }}>
-                    Key Highlights
+
+                  <Typography variant="h5" component="h4" gutterBottom sx={{ fontWeight: 600, mt: 3 }}>
+                    How It Works
                   </Typography>
-                  <List>
-                    {product.highlights.map((highlight, i) => (
-                      <ListItem key={i} disableGutters>
-                        <ListItemIcon sx={{ minWidth: 'auto', mr: 1 }}>
-                          <CheckCircle color="primary" />
-                        </ListItemIcon>
-                        <ListItemText primary={highlight} />
-                      </ListItem>
-                    ))}
-                  </List>
+                  <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+                    {product.howItWorks}
+                  </Typography>
+
+                  <Grid container spacing={4}>
+                    <Grid item xs={12} md={product.useCases ? 6 : 12}>
+                        <Typography variant="h5" component="h4" gutterBottom sx={{ fontWeight: 600 }}>
+                            Key Highlights
+                        </Typography>
+                        <List dense>
+                            {product.keyHighlights.map((text, i) => (
+                            <ListItem key={i} disablePadding>
+                                <ListItemIcon>
+                                <CheckCircleOutline fontSize="small" color="primary" />
+                                </ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                            ))}
+                        </List>
+                    </Grid>
+                    {product.useCases && (
+                        <Grid item xs={12} md={6}>
+                            <Typography variant="h5" component="h4" gutterBottom sx={{ fontWeight: 600 }}>
+                                Ideal Use Cases
+                            </Typography>
+                            <List dense>
+                                {product.useCases.map((text, i) => (
+                                <ListItem key={i} disablePadding>
+                                    <ListItemIcon>
+                                    <CheckCircleOutline fontSize="small" color="primary" />
+                                    </ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                                ))}
+                            </List>
+                        </Grid>
+                    )}
+                  </Grid>
+
+                  <Box sx={{ mt: 3, p: 2, backgroundColor: '#f5f5f5', borderRadius: 1 }}>
+                    <Typography variant="h5" component="h4" gutterBottom sx={{ fontWeight: 600 }}>
+                        Why It Matters
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                        {product.whyItMatters}
+                    </Typography>
+                  </Box>
+
                 </CardContent>
               </Card>
             </Grid>

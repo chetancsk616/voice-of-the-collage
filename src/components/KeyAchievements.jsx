@@ -1,23 +1,12 @@
-
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper } from '@mui/material';
-import { EmojiEvents, People, School } from '@mui/icons-material';
+import { EmojiEvents } from '@mui/icons-material';
 
 const achievements = [
   {
     icon: <EmojiEvents sx={{ fontSize: 60, color: 'primary.main' }} />,
-    title: 'National Innovation Award',
-    description: 'Our project on sustainable energy won the first prize at the National Innovation Conclave 2023.',
-  },
-  {
-    icon: <People sx={{ fontSize: 60, color: 'primary.main' }} />,
-    title: 'Community Impact',
-    description: 'Over 10,000 students are using our campus navigation app, which has reduced campus confusion by 40%.',
-  },
-  {
-    icon: <School sx={{ fontSize: 60, color: 'primary.main' }} />,
-    title: 'Featured in Tech Journals',
-    description: 'Our work on the automated attendance system was featured in several leading tech journals for its innovative approach.',
+    title: 'Finalists in SIH Internal Hackathon',
+    description: 'Our innovative solution was selected as a finalist in the highly competitive Smart India Hackathon internal round, showcasing our problem-solving skills and technical expertise.',
   },
 ];
 
