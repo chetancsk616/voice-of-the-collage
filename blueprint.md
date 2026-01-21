@@ -3,7 +3,7 @@
 
 ## **Overview**
 
-This document outlines the architecture, design, and features of the "Voice of the College" application. The application is a web-based platform designed to connect the college community by showcasing innovative student-led projects. It provides a secure login system and a dynamic, single-page landing page to present information to users.
+This document outlines the architecture, design, and features of the "Voice of the College" application. The application is a web-based platform designed to help students by providing solutions. It provides a secure login system and a dynamic, single-page landing page to present information to users.
 
 ## **Project Outline**
 

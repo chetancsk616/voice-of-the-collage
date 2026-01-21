@@ -30,10 +30,10 @@ const HeroSection = () => {
           Welcome to the Voice of the College
         </Typography>
         <Typography variant="h5" component="p" sx={{ mb: 4 }}>
-          A platform to showcase and discover innovative student-led projects.
+          A platform to help students by providing solutions.
         </Typography>
         <Button variant="contained" color="primary" size="large" onClick={handleExploreClick}>
-          Explore Projects
+          Explore Solutions
         </Button>
       </Container>
     </Box>

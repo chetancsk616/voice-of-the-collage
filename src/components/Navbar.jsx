@@ -55,7 +55,7 @@ const Navbar = () => {
             Home
           </Button>
           <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('products')}>
-            Products
+            Solutions
           </Button>
           <Button color="primary" sx={{ fontWeight: 600 }} onClick={() => handleNavClick('achievements')}>
             Achievements
