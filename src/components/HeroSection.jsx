@@ -15,7 +15,10 @@ const HeroSection = () => {
     <Box
       id="hero"
       sx={{
-        background: 'linear-gradient(45deg, #83a4d4 30%, #b6fbff 90%)',
+        background: 'linear-gradient(45deg, rgba(131, 164, 212, 0.5) 30%, rgba(182, 251, 255, 0.9) 90%), url(/votc2.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -23,6 +26,8 @@ const HeroSection = () => {
         textAlign: 'center',
         color: 'white',
         position: 'relative',
+        backgroundPosition: 'center 30%',
+
       }}
     >
       <Container>

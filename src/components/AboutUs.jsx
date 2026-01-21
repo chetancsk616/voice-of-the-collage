@@ -1,16 +1,15 @@
-
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 
 const AboutUs = () => {
   return (
-    <Box sx={{ py: 8, backgroundColor: '#f9f9f9' }}>
-      <Container maxWidth="lg">
-        <Typography variant="h3" component="h2" align="center" gutterBottom sx={{ fontWeight: 700, color: '#333' }}>
+    <Box id="about" sx={{ py: 8, backgroundColor: '#f5f5f5' }}>
+      <Container>
+        <Typography variant="h2" component="h2" align="center" gutterBottom sx={{ fontWeight: 700, color: '#333' }}>
           About Us
         </Typography>
-        <Typography variant="h6" component="p" align="center" sx={{ color: '#666' }}>
-          This section is under construction. Check back soon for more information about our team and our mission.
+        <Typography variant="h5" component="p" align="center" sx={{ mt: 4, color: '#555' }}>
+          This section is currently under development and will be updated soon.
         </Typography>
       </Container>
     </Box>
