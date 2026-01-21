@@ -16,7 +16,7 @@ const products = [
       'Reduces manual testing time and human error',
       'Ideal for education, R&D labs, and prototyping environments',
     ],
-    whyItMatters: 'As digital systems grow more complex, manual logic testing becomes inefficient and error-prone. The Logic Checker Compiler ensures correctness, consistency, and confidence in every digital design—before deployment.'
+    whyItMatters: 'Competitive Coding has been the standard for most of Jobs and Internships, particularly in software enterprises. The greater majority of the students don’t qualify for it. The reasons may vary from a lack of direction, practice, and time. We wish to tackle most of them through our AI-empowered and Safe Competitive Coding Platform.'
   },
   {
     icon: <Security sx={{ fontSize: 50, color: 'primary.main' }} />,
